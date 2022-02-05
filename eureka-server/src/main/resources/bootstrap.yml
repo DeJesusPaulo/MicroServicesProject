@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: eureka-server
+  
+  cloud:
+    compatibility-verifier:
+      enabled: true
+      
+    config:
+      uri: http://localhost:8888
+      fail-fast: true 
+      
+    

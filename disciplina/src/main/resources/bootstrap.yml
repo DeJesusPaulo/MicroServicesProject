@@ -1,0 +1,10 @@
+spring: 
+  application:
+    name: disciplinas-serv
+
+  cloud:
+    config:
+      uri:
+      -  http://localhost:8888
+      
+
