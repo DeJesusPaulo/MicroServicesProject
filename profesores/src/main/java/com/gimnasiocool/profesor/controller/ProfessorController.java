@@ -1,11 +1,11 @@
 package com.gimnasiocool.profesor.controller;
 
-import com.gimnasiocool.profesor.entities.Professor;
+import com.gimnasiocool.professor.entities.Professor;
+import com.gimnasiocool.professor.service.I_ProfesorService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.gimnasiocool.profesor.service.I_ProfesorService;
 
 import java.util.List;
 

@@ -2,8 +2,8 @@ package com.gimnasiocool.disciplina.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gimnasiocool.disciplina.entities.Discipline;
-import com.gimnasiocool.disciplina.service.IDisciplineService;
+import com.gimnasiocool.discipline.entities.Discipline;
+import com.gimnasiocool.discipline.service.IDisciplineService;
 
 import java.util.HashMap;
 import java.util.List;
