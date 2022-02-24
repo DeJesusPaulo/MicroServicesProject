@@ -6,15 +6,15 @@ import com.gimnasiocool.discipline.entities.Discipline;
 
 public interface IDisciplineService {
 
-    public List<Discipline> findAllDisc();
+    public List<Discipline> findAllDisciplines();
 
-    public Discipline getDisciplina(Long id);
+    public Discipline getDiscipline(Long id);
 
-    public Discipline createDisciplina(Discipline discipline);
+    public Discipline createDiscipline(Discipline discipline);
 
-    public Discipline updateDisciplina(Discipline discipline);
+    public Discipline updateDiscipline(Discipline discipline);
 
-    public Discipline deleteDisciplina(Long id);
+    public Discipline deleteDiscipline(Long id);
 
     public Discipline findByName(String name);
 }
