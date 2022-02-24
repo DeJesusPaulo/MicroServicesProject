@@ -8,7 +8,7 @@ import com.gimnasiocool.client.entities.Client;
 
 public interface IClientRepository extends JpaRepository<Client, Long> {
 
-	public List<Client> findByApellido(String apellido);
+	public List<Client> findBySurname(String surname);
 	
 	public Client findByDni(int dni);
 }
