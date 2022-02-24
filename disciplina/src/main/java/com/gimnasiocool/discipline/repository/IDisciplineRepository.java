@@ -6,6 +6,6 @@ import com.gimnasiocool.discipline.entities.Discipline;
 
 public interface IDisciplineRepository extends JpaRepository<Discipline,Long> {
 
-    public Discipline findByNombre(String nombre);
+    public Discipline findByName(String name);
 
 }
