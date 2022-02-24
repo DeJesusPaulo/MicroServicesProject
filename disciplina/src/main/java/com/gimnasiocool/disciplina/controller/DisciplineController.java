@@ -20,69 +20,69 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping("/disciplines")
+@RequestMapping("/api/v1/disciplines")
 public class DisciplineController {
 
     @Autowired
-	IDisciplineService ds;
+	IDisciplineService disciplineService;
     
     @GetMapping
     public ResponseEntity<List<Discipline>> listado(){
-    	List<Discipline> disc = ds.findAllDisc();
+    	List<Discipline> disciplines = disciplineService.findAllDisciplines();
     	
-    	if (disc.isEmpty()) { return ResponseEntity.noContent().build();}
+    	if (disciplines.isEmpty()) { return ResponseEntity.noContent().build();}
     	
-		return ResponseEntity.ok(disc) ;
+		return ResponseEntity.ok(disciplines) ;
     }
     
-    @GetMapping("{/id}")
+    @GetMapping("/search/{id}")
     public ResponseEntity<Discipline> buscarPorID(@PathVariable("id") Long id){
-    	Discipline disc = ds.getDisciplina(id);
+    	Discipline discipline1 = disciplineService.getDiscipline(id);
     	
     	if (id == null) { return ResponseEntity.notFound().build(); }
     	
-    	return ResponseEntity.ok(disc);
+    	return ResponseEntity.ok(discipline1);
     }
     
-    @PostMapping
-    public ResponseEntity<Discipline> crearDisciplina(@Valid @RequestBody Discipline discipline, BindingResult result){
+    @PostMapping("/create")
+    public ResponseEntity<Discipline> createDiscipline(@Valid @RequestBody Discipline discipline, BindingResult result){
     	if (result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatoMensajes(result));
 		}
     	
-    	Discipline disc = ds.createDisciplina(discipline);
+    	Discipline discipline1 = disciplineService.createDiscipline(discipline);
     	
-    	return ResponseEntity.status(HttpStatus.CREATED).body(disc);
+    	return ResponseEntity.status(HttpStatus.CREATED).body(discipline1);
     }
     
-    @PutMapping
-    public ResponseEntity<Discipline> actualizarDisciplina(@PathVariable("id") Long id, @RequestBody Discipline discipline){
+    @PutMapping("/update")
+    public ResponseEntity<Discipline> updateDiscipline(@PathVariable("id") Long id, @RequestBody Discipline discipline){
     	discipline.setId(id);
-    	Discipline disc = ds.updateDisciplina(discipline);
+    	Discipline discipline1 = disciplineService.updateDiscipline(discipline);
     	
-    	if (disc == null) { return ResponseEntity.notFound().build(); }
+    	if (discipline1 == null) { return ResponseEntity.notFound().build(); }
     	
     	
-    	return ResponseEntity.ok(disc);	 	
+    	return ResponseEntity.ok(discipline1);	 	
     }
     
-    @DeleteMapping
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Discipline> borrarDisciplina(@PathVariable ("id") Long id){
-    	Discipline disc = ds.deleteDisciplina(id);
+    	Discipline discipline1 = disciplineService.deleteDiscipline(id);
     	
     	if (id == null) { return ResponseEntity.notFound().build(); }
     	
-    	return ResponseEntity.ok(disc);
+    	return ResponseEntity.ok(discipline1);
     }
     
-    @GetMapping("/nombre")
-    public ResponseEntity<Discipline> buscarPorNombre(String nombre){
-    	Discipline disc = ds.findByName(nombre);
+    @GetMapping("/searchbyname/nombre")
+    public ResponseEntity<Discipline> findByName(String name){
+    	Discipline discipline1 = disciplineService.findByName(name);
     	
-    	if (nombre == null) { return ResponseEntity.notFound().build(); }
+    	if (name == null) { return ResponseEntity.notFound().build(); }
     	
     	
-    	return ResponseEntity.ok(disc);
+    	return ResponseEntity.ok(discipline1);
     }
     
     
