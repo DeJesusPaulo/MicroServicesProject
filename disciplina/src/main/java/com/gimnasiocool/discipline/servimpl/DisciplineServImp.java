@@ -14,60 +14,58 @@ import java.util.List;
 public class DisciplineServImp implements IDisciplineService {
 
     @Autowired
-    IDisciplineRepository dr;
+    IDisciplineRepository disciplineRespository;
 
     @Override
-    public List<Discipline> findAllDisc() {
-        return dr.findAll();
+    public List<Discipline> findAllDisciplines() {
+        return disciplineRespository.findAll();
     }
 
     @Override
-    public Discipline getDisciplina(Long id) {
+    public Discipline getDiscipline(Long id) {
 
-        return dr.findById(id).orElse(null);
+        return disciplineRespository.findById(id).orElse(null);
     }
 
     @Override
-    public Discipline createDisciplina(Discipline discipline) {
-        Discipline disc =getDisciplina(discipline.getId());
+    public Discipline createDiscipline(Discipline discipline) {
+        Discipline discipline1 =getDiscipline(discipline.getId());
         
-        if (disc == null) { ResponseEntity.notFound().build(); }
+        if (discipline1 == null) { ResponseEntity.notFound().build(); }
         
-        disc.setStatus("Disciplina Creada");
+        discipline1.setStatus("Discipline created");
         
 
-        return dr.save(disc);
+        return disciplineRespository.save(discipline1);
     }
 
     @Override
-    public Discipline updateDisciplina(Discipline discipline) {
-    	Discipline disc =getDisciplina(discipline.getId());
-    	if (disc == null) { ResponseEntity.notFound().build(); }
+    public Discipline updateDiscipline(Discipline discipline) {
+    	Discipline discipline1 =getDiscipline(discipline.getId());
+    	if (discipline1 == null) { ResponseEntity.notFound().build(); }
     	
-    	disc.setNombre(discipline.getNombre());
-    	disc.setDescripcion(discipline.getDescripcion());
-    	disc.setStatus("Disciplina actualizada");
+    	discipline1.setNombre(discipline.getNombre());
+    	discipline1.setDescripcion(discipline.getDescripcion());
+    	discipline1.setStatus("Discipline updated");
     	  
-    	  
-    	
-        return dr.save(disc);
+        return disciplineRespository.save(discipline1);
     }
 
     @Override
-    public Discipline deleteDisciplina(Long id) {
-    	Discipline disc = getDisciplina(id);
-    	if (disc == null ) { return null; }
+    public Discipline deleteDiscipline(Long id) {
+    	Discipline discipline1 = getDiscipline(id);
+    	if (discipline1 == null ) { return null; }
     	
-    	disc.setStatus("Disciplina borrada");
+    	discipline1.setStatus("Disciplina borrada");
 			
     	
-        return dr.save(disc);
+        return disciplineRespository.save(discipline1);
     }
 
     @Override
     public Discipline findByName(String name) {
     	
     	
-        return dr.findByNombre(name);
+        return disciplineRespository.findByName(name);
     }
 }
