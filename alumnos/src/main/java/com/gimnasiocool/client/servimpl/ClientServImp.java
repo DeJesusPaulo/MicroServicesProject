@@ -81,7 +81,7 @@ public class ClientServImp implements IClientService {
 	@Override
 	public List<Client> searchBySurname(String surname) {
 
-		return repo.findByApellido(surname);
+		return repo.findBySurname(surname);
 	}
 
 	@Override
