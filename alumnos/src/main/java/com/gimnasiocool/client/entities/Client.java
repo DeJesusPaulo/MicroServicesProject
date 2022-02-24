@@ -9,18 +9,18 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 import com.gimnasiocool.client.model.Discipline;
 import com.gimnasiocool.client.model.Professor;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -40,8 +40,6 @@ public class Client {
 	private String surname;
 	
 	@Column(name = "DNI",nullable = false,unique = true,length = 12)
-	@Size(min = 12,max = 12,message = "Cantidad de numeros incorrecta")
-	@NotEmpty(message = "Debe ingresar numero de documento")
 	private int dni;
 	
 	@Column(name = "email")
