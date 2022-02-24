@@ -37,7 +37,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 		}
 
 
-		@GetMapping({"/id"})
+		@GetMapping("/search/{id}")
 		public ResponseEntity<Client> getClientById(@PathVariable ("id") Long id){
 			Client client = clientService.getClient(id);
 			if (id == null) { return ResponseEntity.notFound().build();}
@@ -57,7 +57,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 		}
 
 
-		@PutMapping({"/update/id"})
+		@PutMapping({"/update/{id}"})
 		public ResponseEntity<Client> updateClient(@PathVariable ("id") Long id, @RequestBody Client client){
 			client.setId(id);
 			Client client1 = clientService.updateClient(client);
@@ -66,7 +66,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 			return ResponseEntity.ok(client1);
 		}
 
-		@DeleteMapping
+		@DeleteMapping("/delete/{id}")
 		public ResponseEntity<Client> deleteClient(Long id){
 			Client client = clientService.deleteClient(id);
 			if (client == null) { return ResponseEntity.notFound().build(); }
@@ -74,7 +74,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 			return ResponseEntity.ok(client);
 		}
 
-		@GetMapping("/search/{surname}")
+		@GetMapping("/searchbysurname/{surname}")
 		public ResponseEntity<List<Client>> findBySurname(@PathVariable ("surname") String surname){
 			List<Client> clients = new ArrayList<>();
 			clients = clientService.searchBySurname(surname);
@@ -84,6 +84,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 			return ResponseEntity.ok(clients);
 		}
 
+		@GetMapping("/searchbydni/{dni}")
 		public ResponseEntity<Client>  findByDni(@PathVariable ("dni") int dni){
 			Client client = clientService.searchByDni(dni);
 
